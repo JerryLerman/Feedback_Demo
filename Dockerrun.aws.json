@@ -1,0 +1,27 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "express",
+            "image": "jerrylerman/feedback-express",
+            "hostname": "express",
+            "essential": true,
+            "memory": 128,
+            "portMappings": [{
+                "hostPort": 3000,
+                "containerPort": 3000
+            }]
+        },
+        {
+            "name": "nginx",
+            "image": "jerrylerman/feedback-nginx",
+            "essential": true,
+            "portMappings": [{
+                "hostPort": 80,
+                "containerPort": 80
+            }],
+            "links": ["nginx", "express"],
+            "memory": 128
+        }
+    ]
+}
