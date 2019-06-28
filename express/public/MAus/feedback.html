@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://mybmoaccount.com/myaccounts/selfservice/feedback/css/OL.css"> -->
+    <link rel="stylesheet" type="text/css" href="./css/OL.css">
+    <link rel="stylesheet" type="text/css" href="./css/star.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/selfservice/feedback/css/star.css"> -->
+    <script src="https://kit.fontawesome.com/1cee0d92f2.js"></script> 
+    <!-- <script type="text/javascript" src="/selfservice/feedback/js/jquery-1.12.1-min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="/selfservice/feedback/js/mafeedback.js"></script> -->
+    <script type="text/javascript" src="./js/mafeedback.js"></script>
+    <title>Myaccounts Feedback</title>
+</head>
+<body>
+    <div class="container page-content boxBorder ">
+        <div class="row">
+                <div style="width:100%; padding-left:0px !important;padding-right:0px !important" class="clear-padding">
+                    <div class="navbar bmoBrand">
+                        <span><a alt="BMO transport" aria-label="BMO transport" title="BMO transport" class="brand bmo"></a></span>
+                    </div>
+                    <div class="row margintopelement"></div> 		
+                    <div class="row margintopelement"></div> 					
+            
+                    <div id="header-info" style="font-size: 11.25px;" class="row clear-padding marginClass marginelement">
+                        <span class="marginelement">
+                            This form is for suggestions regarding our website only. To protect your privacy, please do not enter any specific account information below. 
+                        </span>
+                </div>
+                    <div class="row elementBorder"></div>
+                </div>
+        </div>
+        <div class="row"> 
+            <div class="flex-container">
+                <div class="comment-section column elementBorder">
+                        <div id="pageComments" style="border-right:1px solid #CCC;padding-left:0px !important;padding-right:0px !important;margin-top:0px;" class="elementBorder">
+                            <ul class=" navbar-nav navbar-right">
+                                <li class="marginClass marginelement">
+                                    <span id="tsText" style="font-weight: bold;">
+                                        <label for="commentsTopic" style="display:none">Choose a topic for your comments...</label>
+                                        <select class="control-label" name="commentsTopic" id="commentsTopic" onchange="commentsTopicChange()">
+                                            <option value="">Choose a topic for your comments...</option>
+                                            <option value="Page Error">Page Error</option>
+                                            <option value="Suggestion">Suggestion</option>
+                                            <option value="Compliment">Compliment</option>
+                                            <option value="Complaint">Complaint</option>
+                                        </select>
+                                    </span>
+                                    <input type="hidden" name="commentsTopicErrorMsg" id="commentsTopicErrorMsg" value="Please choose a topic before submitting.">
+                                    <span id="chooseTopicId" class="reqQuestion"></span>
+                                </li>
+                                <li class="marginClass marginelement margintopelement">
+                                    <label for="comments" style="display:none">Tell us what you think...</label>
+                                    <textarea name="comments" wrap="virtual" id="comments" style="width:99%" rows="3" class="large" cols="60" maxlength="1000" placeholder="Tell us what you think..." onkeyup="commentLengthChange()"></textarea>
+                                    <div id="commentLimit" class="float-right">
+                                        <span style="margin-right:.5em; font-size: 11.25px;" id="commnetLength">1000</span>
+                                    </div>
+                                </li>
+                                <li style="font-weight: bold;font-size: 11.25px;" class="marginelement">
+                                    For issues requiring a response please contact customer service.
+                                </li>
+                            </ul>
+                        </div>
+                </div> 
+                <div class="rating-section column elementBorder">
+                    <div id="pageRating" style="padding-left:0px !important;padding-right:0px !important">
+                            <ul class="navbar-nav navbar-right">		
+                                <li class="marginClass marginelement" style="margin-left: 0em !important;">
+                                    <div class=" row elementBorder ">
+                                        <div class="column rating-alignment" style="padding-left: .3em !important">Content</div>
+                                        <div class="column rating-alignment">
+                                            <fieldset class="rating">
+                                                    <input type="radio" id="c5" name="ratingContent" value="5"><label class="full" for="c5" title="Awesome"></label>
+                                                    <input type="radio" id="c4" name="ratingContent" value="4"><label class="full" for="c4" title="Good"></label>
+                                                    <input type="radio" id="c3" name="ratingContent" value="3"><label class="full" for="c3" title="Average"></label>
+                                                    <input type="radio" id="c2" name="ratingContent" value="2"><label class="full" for="c2" title="Bad"></label>
+                                                    <input type="radio" id="c1" name="ratingContent" value="1"><label class="full" for="c1" title="Poor"></label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="marginClass marginelement" style="margin-left: 0em !important;">
+                                    <div class="row elementBorder">
+                                        <div class="column rating-alignment" style="padding-left: .3em !important">User-friendly</div>
+                                        <div class="column rating-alignment">
+                                            <fieldset class="rating">
+                                                    <input type="radio" id="u5" name="ratingUser" value="5"><label class="full" for="u5" title="Awesome"></label>
+                                                    <input type="radio" id="u4" name="ratingUser" value="4"><label class="full" for="u4" title="Good"></label>
+                                                    <input type="radio" id="u3" name="ratingUser" value="3"><label class="full" for="u3" title="Average"></label>
+                                                    <input type="radio" id="u2" name="ratingUser" value="2"><label class="full" for="u2" title="Bad"></label>
+                                                    <input type="radio" id="u1" name="ratingUser" value="1"><label class="full" for="u1" title="Poor"></label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="marginelement">
+                                    <div id="overAllId" class="row ">
+                                        <div class="column rating-alignment">Overall
+                                            <span class="reqQuestion"></span>
+                                        </div>
+                                        <div id="overAllclick" class=" column rating-alignment" onclick="overAllClick();">
+                                            <fieldset id="overAllSet" class="rating">
+                                                    <input type="radio" id="o5" name="ratingOverall" value="5"><label class="full" for="o5" title="Awesome"></label>
+                                                    <input type="radio" id="o4" name="ratingOverall" value="4"><label class="full" for="o4" title="Good"></label>
+                                                    <input type="radio" id="o3" name="ratingOverall" value="3"><label class="full" for="o3" title="Average"></label>
+                                                    <input type="radio" id="o2" name="ratingOverall" value="2"><label class="full" for="o2" title="Bad"></label>
+                                                    <input type="radio" id="o1" name="ratingOverall" value="1"><label class="full" for="o1" title="Poor"></label>
+                                            </fieldset>
+                                            <input type="hidden" name="overAllErrorMsg" id="overAllErrorMsg" value="Please choose overall rating before submitting.">
+                                        </div>
+                                    </div>
+                                </li>	
+                            </ul>
+                    </div>
+                </div> 
+            </div>
+            <div class="column elementBorder margintopelement">
+                <span class="marginelement margintopelement"><label for="visitingReason">What is your main reason for visiting?</label></span>
+            </div> 
+            <div class="column elementBorder margintopelement">
+                    <span class="marginelement margintopelement">
+                                <select name="visitingReason" class="fullWidth" id="visitingReason" style="width: 99%;margin-bottom: .3em !important;">
+                                    <option value="">Please choose one...</option>
+                                    <option value="Customer Service Request">Customer Service Request</option>
+                                    <option value="Registration/Login/Password Reset">Registration/Login/Password Reset</option>
+                                    <option value="Request or Pay Buyout">Request or Pay Buyout</option>
+                                    <option value="View Account Activity/Outstanding Charges">View Account Activity/Outstanding Charges</option>
+                                    <option value="View Payment History">View Payment History</option>
+                                    <option value="View or Pay Invoices">View or Pay Invoices</option>
+                                    <option value="View Interest Letter">View Interest Letter</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                    </span>	
+                    <input name="visitingOtherReason" id="visitingOtherReason" type="text" onclick="" style="display:none" value="">						
+            </div> 
+            <div class="column margintopelement elementBorder">
+                <span class="marginelement ">Would you recommend our site</span>
+            </div> 
+            <div class="column elementBorder margintopelement" style="!important;">
+                <input class="marginelement" name="recommend" type="radio" id="rYes" value="Y" checked=""><label for="rYes">Yes</label>
+                <input class="marginelement" name="recommend" type="radio" id="rNo" value="N"><label for="rNo">No</label>
+            </div> 
+            <div class="column margintopelement elementBorder">
+                <span style="font-weight: bold;" class="marginelement"><label for="emailAddress">Please enter your email address:</label></span>
+                <span class="reqQuestion"></span>
+            </div> 
+            <div class="column margintopelement elementBorder" style="margin-top: 0em !important;">
+                <input class="inputText fullWidth marginelement" type="text" style="width: 99%;margin-top: .3em !important;margin-bottom: .3em !important;" name="emailAddress" id="emailAddress" value="" align="middle" maxlength="256" placeholder="sample@email.com" onblur="checkEmailBlur(this)" onkeyup="checkEmailKeyUp()">
+                <input type="hidden" name="emailAddressErrorMsg" id="emailAddressErrorMsg" value="Please enter a valid email address.">
+            </div> 
+            <div class="column elementBorder margintopelement">
+                <span class="marginelement">May we contact you?</span>
+                
+            </div> 
+            <div id="contactUsId" class="column margintopelement elementBorder">
+                <input class="marginelement" name="contact" type="radio" value="Y" id="cYes" checked=""><label for="cYes">Yes</label>
+                <input class="marginelement" name="contact" type="radio" value="N" id="cNo"><label for="cNo">No</label>
+            </div> 
+            
+    </div>	
+        <div class="row" style="text-align:center;">
+            <div id="linkSection" class=" column margintopelement elementBorder" style="border-right: 1px solid #CCC;margin-top: 0em !important;">
+                            Thank you for your feedback. Although all comments will be reviewed we regret that we cannot directly respond to all feedback. We reserve the right to contact you in the event we need more information on the issue you are experiencing.
+            </div>	
+            <div class=" column elementBorder" style="text-align:center !important ">
+                        <button style="margin-top:1.2em !important;margin-bottom:.85em !important" class="submitButton d-inline btn btn-primary submitButtonStyle" id="feedbackSubmitButton" onclick="return submitFeedback();" value="  Submit  "> Submit</button>
+            </div> 	
+    </div>
+        <div class="row footer" style="text-align:center; height: 4.9em !important;">
+            <ul style="margin: auto;margin-top:1.9em !important">
+                <li>© 2019 Bank of . All rights reserved.</li>
+                <li1><a id="footerPrivacyNotice" target="_blank" aria-label="Privacy Notice" title="Privacy Notice" href="https://www.bmoharris.com/us/about/privacy">Privacy Notice</a></li1>
+            </ul>
+    </div>
+        <input type="hidden" name="CUSTOM_PARAMETER" id="CUSTOM_PARAMETER" value="bmo">			
+        <input type="hidden" name="feedbackLanguage" id="feedbackLanguage" value="en">
+        <input type="hidden" name="feedbackApplication" id="feedbackApplication" value="slp">
+        <input type="hidden" name="feedbackBusinessSegment" id="feedbackBusinessSegment" value="">
+        <input type="hidden" name="feedbackTenantId" id="feedbackTenantId" value="BMO">
+        <input type="hidden" name="feedbackUserId" id="feedbackUserId" value="">
+    </div>
+
+</body>
+</html>
