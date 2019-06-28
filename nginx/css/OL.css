@@ -1,0 +1,406 @@
+* {
+    box-sizing: border-box;
+  }
+  .header { background: #21364D; color: #FFF; } 
+  .submitButton { background: #386FB3; color: #FFF; } 
+  .answerLabel td { padding: 3px 5px 0px 7px; } 
+  #customBlock, #linkSection { font-size: 11px; padding: 7px; text-align: left;} 
+  body {
+    margin: 5;
+    font-family: Arial;
+    font: 12.5px Arial, Helvetica, sans-serif;
+  }
+  
+  li {
+      display: inline-block;
+  }
+  .header {
+    text-align: center;
+    padding: 3px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0px;
+    
+    justify-content:space-between;
+  }
+  
+  .flex-container {
+      display: flex;
+      flex: 100%;
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .column {
+    flex: 50%;
+    max-width: 50%;
+    padding: 0 0px; 
+  }
+  
+  .column  {
+   /* margin-top: 2px;*/
+     vertical-align: middle;
+     justify-content: space-around;\
+  }
+  
+  li.marginelement {
+      margin-bottom: 0em;
+      margin-left: .2em;
+      margin-top: .3em;
+  }
+  
+   .rating-alignment {
+       margin: auto;
+   }
+  
+   select {
+       height: 25px;
+   }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  /* @media (max-width: 800px) {
+    .column {
+      flex: 50%;
+      max-width: 50%;
+      justify-content: space-around;
+  
+    }
+  } */
+  
+  @media (min-width: 768px) {
+      .container {
+        max-width: 576px;
+    }
+    .column {
+      flex: 50%;
+      max-width: 50%;
+      justify-content: space-around;
+  
+    }
+  
+  }
+  
+  @media (min-width: 992px) {
+      .container {
+        max-width: 576px;
+    }
+    .column {
+      flex: 50%;
+      max-width: 50%;
+      justify-content: space-around;
+  
+    }
+  
+  }
+  
+  @media (min-width: 1200px) {
+      .container {
+        max-width: 576px;
+    }
+    .column {
+      flex: 50%;
+      max-width: 50%;
+      justify-content: space-around;
+  
+    }
+  
+  }
+  
+  #pageRating {
+      flex-direction: row-reverse;
+  }
+  
+  
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media (max-width: 535px) {
+  
+    .container {
+        /* min-width: 325px; */
+      max-width: 535px;
+    }
+      
+   /* .navbar.bmoBrandM {
+      max-width: 500px;
+    }
+    */
+    
+    #header-info {
+        max-width: 510px;
+      padding: 4px;
+      text-align: justify;
+    }
+    
+    #questionnaires-section {
+      max-width: 535px;
+    }
+    
+    .elementBorder {
+      max-width: 535px;
+    }
+  
+    select {
+      width: 95% !important;
+    }
+  
+    .flex-container {
+      max-width: 535px;
+        display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .rating-section {
+      max-width: 510px !important;
+        order: 0;
+    }
+  
+    .comment-section {
+      max-width: 510px !important;
+        order: 1;
+    }
+  
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
+  
+    .rating-alignment {
+        flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: 50%;
+        /*flex: 1 0 50%;*/
+    }
+  }
+  
+  .header { background: #21364D; color: #FFF; } 
+  .submitButton { background: #386FB3; color: #FFF; ; line-height: 1.7; margin-top: 3%;} 
+  .answerLabel td { padding: 3px 5px 0px 7px; } 
+  #customBlock, #linkSection { font-size: 11px; padding: 7px; text-align: left;} 
+                  
+  .navbar.bmoBrand{
+      background-image: url("../images/feedback.jpg");
+      background-repeat: no-repeat;
+      background-color: #0079C1;
+      width: 574px;
+      height: 167px;
+  }
+  a.brand.bmo {
+      margin-left: 50px;
+      color: #0079C2;
+  }
+  a.brand.bmo {
+      /* margin-left: 50px;
+      color: #0079C2; */
+  }
+  .header {
+      background: #21364D;
+      color: #FFF;
+  }
+  .scaleTable td {
+      padding: 0px 3px;
+  }
+  .scaleRadio {
+      height: 20px;
+  }
+  .scaleText {
+      white-space: nowrap;
+  }
+  .bevel {
+      background: #FFF;
+      border: 1px solid #FFF;
+      padding: 7px;
+  }
+  .reqQuestion{
+      padding-left: .5em;
+      background-image: url("../images/reqAsterisk.gif");
+      background-repeat: no-repeat;
+      font-weight: bold;
+      height: auto !important;
+      margin-left:0px;
+   
+  }
+  .reqHilite {
+      padding-left: 10px;
+      background-image: url("../images/reqAsterisk.gif");
+      background-repeat: no-repeat;
+      font-weight: bold;
+      height: auto !important;
+   
+  }
+  .reqfield {
+      /* .form-group.required .control-label:after {
+    content:"*";
+    color:red;
+  }
+      padding-left: 10px;
+      background-image: url("../staticImages/reqAsterisk.gif");
+      background-repeat: no-repeat;
+      
+      font-weight: bold;
+      height: auto !important; */
+   
+  }
+  
+  .answerSpan {
+      /*float: right;*/
+      /*padding-left: 5px;*/
+  }
+  .answerType td {
+      text-align: center;
+      font-size: 12px;
+  }
+  .answerType label {
+      padding: 2px 7px 0px 7px;
+      display: block;
+      visibility: visible;
+  }
+  ul.answerTypeUL {
+          float: right;
+          margin: 0px;
+          padding: 0px;
+      }
+      ul.answerTypeUL li {
+          display: inline;
+          float: right;
+          text-align: center;
+      }
+      
+      
+  ul.radioAnswer {
+      list-style: none;
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      text-align: left;
+  }
+  ul.radioAnswer li {
+      margin: 0px;
+      padding: 0px;
+  }
+  ul.radioAnswer li input {
+      margin: 5px 10px 5px 0px;
+  }
+  .elementBorder{
+      border-bottom: 1px solid #CCC;
+      /*margin-bottom: .2em;*/
+  }
+  .boxBorder{
+      border-bottom: 1px solid #CCC;
+      
+      border-top:1px solid #CCC;
+      border-left:1px solid #CCC;
+      border-right:1px solid #CCC;
+  }
+  .marginClass{
+      /*margin-top: .em;*/
+      margin-bottom: .5em !important;
+  }
+  div .row{
+      margin-right: 0px;
+      margin-left: 0px;
+  }
+  .container{
+      
+       padding-right: 0px !important; 
+       padding-left: 0px !important;
+      
+  }
+  .fullWidth{
+      width:98%;
+  }
+  .marginelement{
+      margin-bottom:.5em;
+      margin-top:.5em;
+      margin-left:.2em;
+      margin-top: .3em;
+  }
+  .margintopelement{
+      /* margin-bottom:.5em; */
+      margin-top:.3em;
+      /* margin-left:.2em; */
+      /* margin-top: .3em; */
+  }
+  
+  .margintopelementtextarea{
+      margin-bottom:.5em;
+      
+  }
+  
+  
+  
+  .Aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer {
+      /*background: url("../images/bmo_footer.jpg");*/
+      background-color: #0079c1;
+  }
+  
+  .footer li,.footer li a {
+      color: white;
+      text-align: center;
+      font-size: 11px;
+  }
+  
+  .footer li {
+      display: inline;
+      margin: 0 5px;
+      border-right: 1px solid #BEBEBE;
+      padding-right: 15px;
+  }
+  
+  .footer li1 {
+      display: inline;
+      margin: 0 5px;
+      /* border-right: 1px solid #BEBEBE; */
+      padding-right: 15px;
+      color: white;
+      text-align: center;
+      font-size: 11px;
+  }
+  
+  .footer li1,.footer li1 a {
+      color: white;
+      text-align: center;
+      font-size: 11px;
+  }
+  
+  .footer li.last {
+      border: none;
+      padding-right: 0px;
+  }
+  
+  textarea::placeholder {
+    /* color: red;
+    font-size: 1.2em; */
+    font-style: italic;
+    font-size: 11.25px
+  }
+  .hasError{
+          border-color: #a94442;
+  }
+  .hasErrordiv{
+          border-color: #a94442;
+          border-width: 1px; /* this allows you to adjust the thickness */
+          border-style: solid;
+          margin-right: 0.1em !important;
+  }
+  .submitButtonStyle{
+      font-size: 12px;
+      line-height: 20px;
+      padding: 2px 6px;
+      background-image: none;
+      box-shadow: none;
+      text-shadow: none;
+      outline: none;
+      height:2.4em; 
+      margin-bottom:0.2em; 
+      text-align:center;
+      background-color: #0079C1;
+      border-radius: 25px;
+  }

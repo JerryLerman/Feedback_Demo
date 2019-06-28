@@ -1,0 +1,32 @@
+version: '3'
+services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '8080:80'
+  express:
+    build:
+      dockerfile: Dockerfile.dev
+      #Use all files in this folder and it's also where Dockerfile.dev is
+      context: ./express
+
+    volumes:
+      - /app/node_modules  # Leave this folder alone. Don't write to it or redirect anything to it
+      #copy everything in the server folder to the app folder except node_modules
+      #everytime our application tries to access anything inside the app directory,
+      # inside the container, except for the node_modules folder, it will
+      #  be redirected back to the server directory inside our current project folder. Any changes
+      #  to anything inside that server will be automatically be reflected inside the 
+      #  app folder of our container and so we won't have to rebuild our image any time we make
+      #  a little change to our source code
+      - ./express:/app
+
+      # localhost is the local host of the container subnet. So if a local mongo db
+      # is on the local machine, need to use host.docker.internal  to tell docker
+      # to use the hosting machine's IP address
+    env_file:
+      - .env
+
