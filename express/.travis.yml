@@ -7,12 +7,12 @@ services:
 
 sudo: required
 
-before_install:
-  - docker build -t jerrylerman/feedback_test -f ./client/Dockerfile.dev ./client
+# before_install:
+#   - docker build -t jerrylerman/feedback_test -f ./express/Dockerfile.dev ./express
 
-# This is the main script running section. These all must pass (status code 0)
-script:
-  - docker run -e CI=true jerrylerman/feedback-test npm test -- --watchAll=false
+# # This is the main script running section. These all must pass (status code 0)
+# script:
+#   - docker run -e CI=true jerrylerman/feedback-test npm test -- --watchAll=false
 
 after_success:
   - docker build -t jerrylerman/feedback-nginx ./nginx
