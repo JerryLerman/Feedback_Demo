@@ -23,7 +23,20 @@
                 "hostPort": 80,
                 "containerPort": 80
             }],
-            "memory": 128
+            "links": ["express"],
+            "memory": 128,
+            "mountPoints": [
+                {
+                    "sourceVolume": "nginx-conf",
+                    "containerPath": "/etc/nginx/conf.d",
+                    "readOnly": true
+                },
+                {
+                    "sourceVolume": "express",
+                    "containerPath": "/usr/src/app",
+                    "readOnly": true
+                }
+            ]
         }
     ]
 }
