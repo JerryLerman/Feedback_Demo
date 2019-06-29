@@ -6,11 +6,7 @@
             "image": "jerrylerman/feedback-express",
             "hostname": "express",
             "essential": true,
-            "memory": 128,
-            "portMappings": [{
-                "hostPort": 3000,
-                "containerPort": 3000
-            }]
+            "memory": 128
         },
         {
             "name": "nginx",
