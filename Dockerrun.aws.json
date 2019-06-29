@@ -12,7 +12,6 @@
                     "containerPort": 3000
                 }
             ],
-            "links": ["express", "nginx"],
             "memory": 128
         },
         {
@@ -24,7 +23,6 @@
                 "hostPort": 80,
                 "containerPort": 80
             }],
-            "links": ["nginx", "express"],
             "memory": 128
         }
     ]
