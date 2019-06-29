@@ -6,6 +6,12 @@
             "image": "jerrylerman/feedback-express",
             "hostname": "express",
             "essential": false,
+            "portMappings": [
+                {
+                    "hostPort": 3000,
+                    "containerPort": 3000
+                }
+            ],
             "memory": 128
         },
         {
