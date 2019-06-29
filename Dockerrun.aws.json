@@ -12,6 +12,7 @@
                     "containerPort": 3000
                 }
             ],
+            "links": ["express", "nginx"],
             "memory": 128
         },
         {
