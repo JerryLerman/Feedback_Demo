@@ -51,9 +51,17 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+mongoose.Promise = Promise
+
 //Connect to the database
-console.log("Connecting to DB: " + process.env.MONGODB_URL)
 mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true})
+    .then(() => {
+        console.log("Was able to connect to the Mongo database!")
+    })
+    .catch((err) => {
+        console.log("Failed to connect to the mongodb database: \n", err)
+        return 110
+    })
 
 
 // Tell bodyParser midleware to assemble the express packets into a JSON structure
@@ -205,5 +213,5 @@ app.listen(process.env.EXPRESS_PORT, err => {
         console.log('Couldn\'t connect to express server!')
         return 1
     }
-    console.log('Express server is istening on port ' + process.env.EXPRESS_PORT)
+    console.log('Express server is listening on port ' + process.env.EXPRESS_PORT)
 })
