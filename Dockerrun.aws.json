@@ -31,7 +31,6 @@
                 "hostPort": 80,
                 "containerPort": 80
             }],
-            "links": ["express"],
             "memory": 128,
             "mountPoints": [
                 {
