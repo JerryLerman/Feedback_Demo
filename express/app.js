@@ -8,7 +8,8 @@ const express = require('express'),
       handlebars = require('handlebars'),
       nodemailer = require('nodemailer'),
       fs = require('fs'),
-      moment = require('moment-timezone')
+      moment = require('moment-timezone'),
+      writeLog = require('./utilities/utilities')
 
 
 moment.tz.setDefault("America/New_York");
@@ -42,6 +43,10 @@ var visitingReason
 var recommend
 var emailAddress
 var feedbackContact
+
+// For AWS hosting
+var certFileBuf
+var mongooseAWSoptions
     
 const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
@@ -51,18 +56,50 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+/*
+
+    const fs = require('fs');
+    const certFileBuf = fs.readFileSync('./rds-combined-ca-bundle.pem');
+    https: //medium.com/@cmani/get-going-with-amazon-documentdb-4f547bcbefc8
+
+    // Set up mongoose connection
+    var mongoose = require('mongoose');
+    var dev_db_url = 'mongodb: //docdbadmin:password@amzn-docdb-feb2019-mani2.cluster-xxxxxx.us-east-1.docdb.amazonaws.com:27017/productdb?ssl=true&replicaSet=rs0';
+    var mongoDB = process.env.MONGODB_URI || dev_db_url;
+    var options = {
+        sslCA: certFileBuf
+    };
+
+    mongoose.connect(mongoDB, options);
+    mongoose.Promise = global.Promise;
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+
+*/
+
+writeLog("The express app is hosted on " + process.env.HOST)
+
+
 mongoose.Promise = Promise
 
 //Connect to the database
-console.log("(" + moment().format('MMMM Do YYYY, h:mm:ss a') + ' ' + moment.tz('America/New_York').zoneAbbr() + 
-    ") Attempting to connect to MONGODB")
+writeLog("Attempting to connect to MONGODB")
+
+if (process.env.HOST === "AWS") {
+    writeLog("Performing processing for AWS hosting")
+    certFileBuf = fs.readFileSync('./rds-combined-ca-bundle.pem')
+    mongooseAWSoptions = {
+        sslCA: certFileBuf
+    }
+}
+
 
 mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true})
     .then(() => {
-        console.log("Was able to connect to the Mongo database!")
+        writeLog("Was able to connect to the Mongo database!")
     })
     .catch((err) => {
-        console.log("Failed to connect to the mongodb database: \n", err)
+        writeLog("Failed to connect to the mongodb database: \n", err)
         return 110
     })
 
@@ -75,13 +112,13 @@ const publicDir = path.join(__dirname,subPath);
 
 // Route to handle a request to display the "Thank You!" page
 app.get('/MAus/ThankYou/', (req, res) => {
-    console.log("Got request for thank you page")
+    writeLog("Got request for thank you page")
     res.sendFile(publicDir + thankYou)
 })
 
 // Route that will get the request to display the feedback form
 app.get('/Maus/', (req, res) => {
-    console.log("Got request for a feedback form at route /MAus/")
+    writeLog("Got request for a feedback form at route /MAus/")
     res.sendFile(publicDir + webPage)
 })
 
@@ -112,8 +149,8 @@ app.post('/MAus', (req, res) => {
         }
     }
 
-    console.log("Received the feedback!")
-    console.log(req.body)
+    writeLog("Received the feedback!")
+    writeLog(req.body)
 
     currentDateTime = moment().format('MMMM Do YYYY, h:mm:ss a') + ' ' + moment.tz('America/New_York').zoneAbbr()
 
@@ -127,11 +164,11 @@ app.post('/MAus', (req, res) => {
         newFeedback, function(err, theFeedback) {
             if (err) {
                 var errorMsg = "Couldn't add the feedback to the database"
-                console.log(errorMsg)
-                console.log(err)
+                writeLog(errorMsg)
+                writeLog(err)
                 returnData.error.exceptionMessage = errorMsg
             } else {
-                console.log("Feedback sucessfully added to the database")
+                writeLog("Feedback sucessfully added to the database")
                 sendEmail()
             }
         }
@@ -155,12 +192,12 @@ function sendEmail() {
         fs.readFile(emailTemplate, function (err, data) {
             if (err) {
                 var errorMsg = "Couldn't format the email template"
-                console.log(errorMsg)
-                console.log(err)
+                writeLog(errorMsg)
+                writeLog(err)
                 returnData.error.exceptionMessage = errorMsg
             } else {
-                console.log("Was able to render the email template")
-                console.log("currentDateTime: " + currentDateTime)
+                writeLog("Was able to render the email template")
+                writeLog("currentDateTime: " + currentDateTime)
 
                 let templateVariables = {
                     currentDateTime,
@@ -182,7 +219,7 @@ function sendEmail() {
                     feedbackContact
                 }
 
-                console.log("Template variables being passed into handlebars:\n", templateVariables)
+                writeLog("Template variables being passed into handlebars:\n", templateVariables)
 
                 var template = handlebars.compile(data.toString())
                 var emailText = template(templateVariables)
@@ -202,9 +239,9 @@ function sendEmail() {
                 // Requesting that an email be sent. This will be done asynchronously
                 transporter.sendMail(mailOptions, function (err, res) {
                     if (err) {
-                        console.log("There was an error sending the email:\n", err)
+                        writeLog("There was an error sending the email:\n", err)
                     } else {
-                        console.log("Here is the response for a successful email send:\n", res)
+                        writeLog("Here is the response for a successful email send:\n", res)
                     }
                 })
             }
@@ -213,8 +250,8 @@ function sendEmail() {
 
 app.listen(process.env.EXPRESS_PORT, err => {
     if (err) {
-        console.log('Couldn\'t connect to express server!')
+        writeLog('Couldn\'t connect to express server!')
         return 1
     }
-    console.log('Express server is listening on port ' + process.env.EXPRESS_PORT)
+    writeLog('Express server is listening on port ' + process.env.EXPRESS_PORT)
 })
