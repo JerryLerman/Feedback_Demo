@@ -99,23 +99,25 @@ mongoose.Promise = Promise
 //Connect to the database
 writeLog("Attempting to connect to MONGODB")
 
-if (process.env.HOST === "AWS") {
-    writeLog("Performing processing for AWS hosting")
-    certFileBuf = fs.readFileSync('rds-combined-ca-bundle.pem')
-    mongooseOptions = {
-        sslValidate:  true,
-        sslCA: certFileBuf,
-        useNewUrlParser: true
-    }
-} else {
-    mongooseOptions = {
-        useNewUrlParser: true
-    }
-}
+// if (process.env.HOST === "AWS") {
+//     writeLog("Performing processing for AWS hosting")
+//     certFileBuf = fs.readFileSync('rds-combined-ca-bundle.pem')
+//     mongooseOptions = {
+//         sslValidate:  true,
+//         sslCA: certFileBuf,
+//         useNewUrlParser: true
+
+//         ssl = true & ssl_ca_certs = rds - combined - ca - bundle.pem & replicaSet = rs0
+//     }
+// } else {
+//     mongooseOptions = {
+//         useNewUrlParser: true
+//     }
+// }
 
 
 
-mongoose.connect(process.env.MONGODB_URL, mongooseOptions)
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser:true })
     .then(() => {
         writeLog("Was able to connect to the Mongo database!")
     })
