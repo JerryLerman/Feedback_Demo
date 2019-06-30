@@ -54,6 +54,9 @@ const transporter = nodemailer.createTransport({
 mongoose.Promise = Promise
 
 //Connect to the database
+console.log("(" + moment().format('MMMM Do YYYY, h:mm:ss a') + ' ' + moment.tz('America/New_York').zoneAbbr() + 
+    ") Attempting to connect to MONGODB")
+
 mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true})
     .then(() => {
         console.log("Was able to connect to the Mongo database!")
