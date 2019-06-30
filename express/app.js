@@ -46,7 +46,7 @@ var feedbackContact
 
 // For AWS hosting
 var certFileBuf
-var mongooseAWSoptions
+var mongooseOptions
     
 const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
@@ -75,6 +75,20 @@ const transporter = nodemailer.createTransport({
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
+
+
+    //Specify the Amazon DocumentDB cert
+    var ca = [fs.readFileSync("rds-combined-ca-bundle.pem")];
+
+    //Create a MongoDB client, open a connection to Amazon DocumentDB as a replica set, 
+    //  and specify the read preference as secondary preferred
+    var client = MongoClient.connect(
+            'mongodb://<dbusername>:<dbpassword>@mycluster.node.us-east-1.docdb.amazonaws.com:27017/test?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred', {
+                sslValidate: true,
+                sslCA: ca,
+                useNewUrlParser: true
+            },
+
 */
 
 writeLog("The express app is hosted on " + process.env.HOST)
@@ -87,14 +101,21 @@ writeLog("Attempting to connect to MONGODB")
 
 if (process.env.HOST === "AWS") {
     writeLog("Performing processing for AWS hosting")
-    certFileBuf = fs.readFileSync('./rds-combined-ca-bundle.pem')
-    mongooseAWSoptions = {
-        sslCA: certFileBuf
+    certFileBuf = fs.readFileSync('rds-combined-ca-bundle.pem')
+    mongooseOptions = {
+        sslValidate:  true,
+        sslCA: certFileBuf,
+        useNewUrlParser: true
+    }
+} else {
+    mongooseOptions = {
+        useNewUrlParser: true
     }
 }
 
 
-mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true})
+
+mongoose.connect(process.env.MONGODB_URL, mongooseOptions)
     .then(() => {
         writeLog("Was able to connect to the Mongo database!")
     })
